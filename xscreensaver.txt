@@ -1,0 +1,246 @@
+xscreensaver.txt
+Created Mon 27 Jun 2022 09:51:57 PM AKDT
+Copyright (C) 2022 by Raymond E. Marcil <marcilr@gmail.com>
+
+
+xscreensaver - Screen Saver for Debian
+
+
+Screen Saver for Debian
+
+To enable xscreensaver:
+  press Ctrl-Alt-L
+
+Usage:
+$ killall xscreensaver
+$ xscreensaver -no-splash &
+
+Then press Ctrl-Alt-L, and stare into the unblinking eye of infinity.
+
+This works and blacks the display !!!
+
+Requires password to log back in.
+--How to set xscreensaver to use blank mode without GUI?
+  Asked 8 years, 7 months ago, Modified 8 years, 7 months ago, Viewed 3k times
+  UNIX & LINUX
+  https://unix.stackexchange.com/questions/99523/how-to-set-xscreensaver-to-use-blank-mode-without-gui
+
+What are the best Linux screen-savers / screen lockers?
+https://www.slant.co/topics/7714/~linux-screen-savers-screen-lockers
+Tue Jun 28, 2022
+
+XScreenSaver debian man page
+https://manpages.debian.org/buster/xscreensaver/xscreensaver.1.en.html
+Tue Jun 28, 2022
+
+xscreensaver Manual
+https://www.jwz.org/xscreensaver/man1.html
+Tue Jun 28, 2022
+
+xscreensaver man page
+https://www.jwz.org/xscreensaver/man2.html
+Tue Jun 28, 2022
+
+How to set xscreensaver to use blank mode without GUI?
+Asked 8 years, 7 months ago, Modified 8 years, 7 months ago, Viewed 3k times
+Did this on malachite.
+Ctrl-Alt-L nicely blacks out the screen
+https://unix.stackexchange.com/questions/99523/how-to-set-xscreensaver-to-use-blank-mode-without-gui
+Tue Jun 28, 2022
+
+
+Configure xscreensaver 
+======================
+With xscreensaver installed now find:
+
+~/.xscreensaver
+$ nano ~/.xscreensaver
+
+Set:
+$ grep -ni mode ~/.xscreensaver
+37:mode:		blank
+
+From:
+37:mode:		random
+
+Still need to test if the screens will go black on their own.
+
+
+Can configure with:
+$ xscreensaver-demo
+
+This launches:
+Screensaver Preferences (XScreenSaver 5.42, 28-Dec-2018)
+
+Click
+
+The easy way to configure xscreensaver is to run the xscreensaver-demo(1)
+xscreensaver (1) - Linux Man Pages
+https://www.systutorials.com/docs/linux/man/1-xscreensaver/
+
+
+How to set xscreensaver to use blank mode without GUI
+Nov 9, 2013 · 1 answer
+You can configure this in either ~/.Xresources : xscreensaver.mode: blank. 
+or ~/.xscreensaver : mode: blank. To verify: xrdb -load ~/.
+
+How to set xscreensaver to use blank mode without GUI?
+Asked 8 years, 7 months ago, Modified 8 years, 7 months ago, Viewed 3k times
+Unix & Linux
+You can configure this in either ~/.Xresources:
+
+xscreensaver.mode: blank
+or ~/.xscreensaver:
+
+mode: blank
+To verify:
+
+xrdb -load ~/.Xresources
+killall xscreensaver
+xscreensaver -no-splash &
+Then press Ctrl-Alt-L, and stare into the unblinking eye of infinity.
+https://unix.stackexchange.com/questions/99523/how-to-set-xscreensaver-to-use-blank-mode-without-gui
+
+
+Mon 27 Jun 2022 10:40:40 PM AKDT
+================================
+1. Backup ~/.xscreensaver:
+$ cp ~/.xscreensaver ~/.xscreensaver-PRIOR-20220627
+
+2. Update xscreensaver mode from random to blank:
+$ nano +37 ~/.xscreensaver
+
+Updated:
+37:mode:		random
+
+To:
+37:mode:                blank
+
+3. Verify new blank setting:
+
+$ xrdb -load ~/.Xresources
+xrdb: No such file or directory
+xrdb: can't open file '/home/marcilr/.Xresources'
+$ killall xscreensaver
+$ xscreensaver -no-splash &
+
+Then press Ctrl-Alt-L, and stare into the unblinking eye of infinity.
+
+This works and blacks the display !!!
+
+Requires password to log back in.
+
+--How to set xscreensaver to use blank mode without GUI?
+Asked 8 years, 7 months ago, Modified 8 years, 7 months ago, Viewed 3k times
+Unix & Linux
+https://unix.stackexchange.com/questions/99523/how-to-set-xscreensaver-to-use-blank-mode-without-gui
+
+
+Want:
+
+Blank Screen Only
+  When blanking the screen, just go black: don't run any graphics.
+
+  NOTE: Do not find xscreensaver-settings application.
+        Will modify ~/.xscreensaver file.
+--xscreensaver-settings - configure and control the xscreensaver daemon
+  https://www.jwz.org/xscreensaver/man2.html
+
+
+XScreenSaver looks good
+https://www.slant.co/topics/7714/~linux-screen-savers-screen-lockers#1
+
+XScreenSaver Manual - jwz.org
+https://www.jwz.org/xscreensaver/man1.html
+
+
+Mon 27 Jun 2022 09:51:57 PM AKDT
+================================
+Installed xscreensaver:
+  xscreensaver - Screensaver daemon and frontend for X11
+  xscreensaver-data - Screen saver modules for screensaver frontends
+  xscreensaver-data-extra - Extra screen saver modules for screensaver frontends
+
+With:
+  $ sudo aptitude install xscreensaver xscreensaver-data \
+  xscreensaver-data-extra 
+
+Looks good:
+  $ dpkg -l | grep xscreensaver
+  ii  xscreensaver              5.42+dfsg1-1   amd64   Screensaver daemon and frontend for X11
+  ii  xscreensaver-data         5.42+dfsg1-1   amd64   Screen saver modules for screensaver frontends
+  ii  xscreensaver-data-extra   5.42+dfsg1-1   amd64   Extra screen saver modules for screensaver frontends
+
+
+
+Invoking xscreensaver
+---------------------
+Not running yet:
+  $ ps ax | grep xscreensaver
+  17257 pts/11   S+     0:00 grep xscreensaver
+
+After a reboot:
+  $ ps ax | grep [x]screensaver
+  1691 tty2     S+     0:00 xscreensaver -no-splash
+
+Looks good!
+
+
+To configure xscreensaver:
+"The easiest way to configure xscreensaver is to simply run the 
+xscreensaver-demo(1) program, and change the settings through the GUI."
+--xscreensaver(1) - Debian Manpages
+  https://manpages.debian.org/buster/xscreensaver/xscreensaver.1.en.html
+
+$ xscreensaver-demo
+
+Get XScreenSaver popup with:
+
+XScreenSaver
+Warning:
+The XScreenSaver daemon doesn't seem to be running
+on display on display ":0.0".  Launch it now?
+CLICK OK
+
+
+1. Verify 
+$ type xscreensaver-command 
+xscreensaver-command is /usr/bin/xscreensaver-command
+
+Looks good
+
+2. Invoke xscreensaver-command:
+$ xscreensaver-command --activate
+
+Works after installation of xscreensaver and reboot.
+
+Yields:
+xscreensaver-command: no screensaver is running on display :0.0
+
+xscreensaver daemon
+===================
+xscreensaver - extensible screen saver and screen locking framework
+
+SYNOPSIS
+xscreensaver [--display host:display.screen] [--verbose] \
+[--no-splash] [--log filename]
+
+GETTING STARTED
+XScreenSaver is a daemon that runs in the background. 
+You configure it with the xscreensaver-settings (1) program.
+
+xscreensaver &
+xscreensaver-settings
+--https://www.jwz.org/xscreensaver/man1.html
+
+
+Links
+=====
+xscreensaver daemon
+https://www.jwz.org/xscreensaver/man1.html
+
+xscreensaver manual
+https://www.jwz.org/xscreensaver/man3.html
+
+control a running xscreensaver process - Ubuntu Manpage
+https://manpages.ubuntu.com/manpages/focal/man1/xscreensaver-command.1.html
